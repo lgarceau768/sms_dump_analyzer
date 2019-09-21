@@ -171,8 +171,12 @@ def timeRatio():
 '''
 look for popular words
 '''
-
-    
+def machineIt():
+    msgList= []
+    for sms in smsMsgs:
+        msgList.append(sms.get_message())
+    machineLearningMessage.similarCheck(msgList)
+    input('')
 
 
 '''
@@ -184,7 +188,9 @@ def menu():
     analytics = FunctionItem('Count Messages', countMessages)
     ratioBtn = FunctionItem('Ratio Incoming / Outgoing', ratio)
     timeBtn = FunctionItem('Time ratio', timeRatio)
+    learning = FunctionItem('Find Used Words', machineIt)
     menu.append_item(display)
+    menu.append_item(learning)
     menu.append_item(timeBtn)
     menu.append_item(analytics)
     menu.append_item(ratioBtn)

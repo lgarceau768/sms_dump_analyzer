@@ -1,6 +1,6 @@
 import os, sys
 from prettytable import *
-
+from colorama import *
 # need to basically find commonalities in words / phrases
 
 # will test on .txt file first
@@ -13,6 +13,7 @@ def readFile(allLines):
 
 # now loop through all words in the list
 def similarCheck(allLines):
+    init()
     usedWords = []
     similar = []
     for i in allLines:
@@ -27,15 +28,15 @@ def similarCheck(allLines):
                     if word in line:
                         hits+=1
                 usedWords.append(word)
-                if hits >= 10:
+                if hits >= 50:
                     similar.append([word, hits])
     def second(val):
         return val[1]
     similar.sort(key = second, reverse = True)
     similarWords = PrettyTable()
-    similarWords.field_names = ['Word', 'Hits']
+    similarWords.field_names = [Fore.GREEN+'Word'+Fore.BLACK, Fore.RED+'Hits'+Fore.BLACK]
     for word in similar:
-        similarWords.add_row([word[0], word[1]])
+        similarWords.add_row([Fore.GREEN+str(word[0])+Fore.BLACK, Fore.RED+str(word[1])+Fore.BLACK])
     print(similarWords)
 
 
